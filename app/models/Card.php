@@ -12,7 +12,4 @@ class Card extends Eloquent {
 	{
 		return $this->hasMany('Comment');
 	}
-	public function image() {
-		return 
-	}
 }

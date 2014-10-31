@@ -26,14 +26,7 @@
 			<div class="panel-heading">
 				<h4 class="">List by Item</h4>
 				<nav>
-				  <ul class="pagination pagination-md">
-				    <li><a href="#">1</a></li>
-				    <li><a href="#">2</a></li>
-				    <li><a href="#">3</a></li>
-				    <li><a href="#">4</a></li>
-				    <li><a href="#">5</a></li>
-				    <li><a href="#">&raquo;</a></li>
-				  </ul>
+				  {{$posts->links()}}
 	  				<select class="sort">
 						<option>Sort by Relevance</option>
 						<option>Sort by Price - Lowest</option>
@@ -73,7 +66,7 @@
 										<p class="price"><span class="smaller">£</span>{{$post->card_price}}</p>
 									</div>
 									<div class="col-xs-6 col-sm-12">
-										<button class="btn btn-pimary btn-success more-detail-btn market-button">More Detail</button>
+										<button class="btn btn-pimary btn-success more-detail-btn market-button" onClick="location.href='{{asset('market/'.$post->id.'')}}'">More Detail</button>
 									</div>
 								</div>
 							</div>
@@ -86,14 +79,7 @@
 	<div class="col-md-9 col-md-offset-3">
 		<div class="well well-sm">
 			<nav>
-				<ul class="pagination pagination-md">
-				    <li><a href="#">1</a></li>
-				    <li><a href="#">2</a></li>
-				    <li><a href="#">3</a></li>
-				    <li><a href="#">4</a></li>
-				    <li><a href="#">5</a></li>
-				    <li><a href="#">&raquo;</a></li>
-				</ul>
+				{{$posts->links()}}
 			</nav>
 		</div>
 	</div>
