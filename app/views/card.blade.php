@@ -103,11 +103,12 @@
 									<img src="http://placehold.it/80" class="img-circle img-responsive center-block" alt="">
 								</div>
 								<div class="col-xs-10">
+									<h5>{{Auth::user()->username}}</h5>
 									<div class="input-group comment-textarea">
 										<form id="comment-form">
 											<textarea id="comment-input" class="form-control" cols="90" placeholder="Write a comment..." name="comment"></textarea>
-											<input class="hidden" type='text' name="user_id" value="{{Auth::user()->id}}">
-											<input class="hidden" type='text' name="card_id" value="{{$card->id}}">
+											<input class="hidden" type='text' name="user_id" value="{{{Auth::user()->id}}}">
+											<input class="hidden" type='text' name="card_id" value="{{{$card->id}}}">
 											<input id="rating" class="hidden" type='text' name="rating" value="">
 										</form>
 									</div>
@@ -137,7 +138,6 @@
 									</div>
 									<div class="col-xs-10">
 										<h5>{{$post->user->username}}</h5>
-										<p>{{$post->comment}}</p>
 										@if ($post->rating == 1)
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
@@ -175,6 +175,8 @@
 											<span class="glyphicon glyphicon-star-empty"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
 										@endif
+										<p>{{$post->comment}}</p>
+										<p>{{$post->created_at->diffForHumans()}}</p>
 									</div>
 								</div>
 							</li>
