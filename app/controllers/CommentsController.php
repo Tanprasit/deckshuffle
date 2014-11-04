@@ -21,6 +21,11 @@ class CommentsController extends \BaseController {
 	public function create()
 	{
 		//
+
+		$in_comment = Input::get('comment');
+		$comment = new Comment;
+		$comment->comment = $in_comment;
+		return Response::json($comment);
 	}
 
 

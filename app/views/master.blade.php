@@ -82,6 +82,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script type='text/javascript' src="{{URL::asset('js/jquery.autosize.js')}}"></script> 
 <script type="text/javascript" src="{{URL::asset('js/validation.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('js/minisearch.js')}}"></script>
+@yield('scripts')
 </html>

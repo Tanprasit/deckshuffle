@@ -6431,3 +6431,18 @@ img.card-single-image.image-responsive.center-block {
 .border {
   border: 1px solid #e7e7e7;
 }
+.comment-count {
+  float: right;
+}
+
+.panel-no-padding {
+  padding: 0px;
+}
+
+.comment-textarea textarea {
+  resize:none;
+}
+
+.rating-stars {
+  padding-top: 10px;
+}

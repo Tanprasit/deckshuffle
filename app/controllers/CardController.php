@@ -46,8 +46,10 @@ class CardController extends \BaseController {
 	{
 		//
 		$card = Card::find($id);
+		$comments = Comment::where('card_id', $id)->with('user')->take(10)->get();
 		return View::make('card')
-			->with('card', $card);
+			->with('card', $card)
+			->with('comments', $comments);
 		
 	}
 

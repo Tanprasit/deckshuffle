@@ -15,6 +15,7 @@ Route::get('/', function()
 {
 	return View::make('news');
 });
+
 Route::resource('series', 'SeriesController');
 
 Route::resource('login', 'LoginController');
@@ -26,6 +27,8 @@ Route::resource('card', 'CardController');
 Route::resource('news', 'NewsController');
 
 Route::resource('user', 'UserController');
+
+Route::resource('comment', 'CommentsController');
 
 Route::get('logout', function() {
 	Auth::logout();
