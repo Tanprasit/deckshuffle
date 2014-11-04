@@ -21,11 +21,8 @@ class CommentsController extends \BaseController {
 	public function create()
 	{
 		//
-
-		$in_comment = Input::get('comment');
 		$comment = new Comment;
-		$comment->comment = $in_comment;
-		return Response::json($comment);
+		return $comment;
 	}
 
 
@@ -37,6 +34,9 @@ class CommentsController extends \BaseController {
 	public function store()
 	{
 		//
+		$comment = Comment::create(Input::all());
+		return Response::json($comment);
+
 	}
 
 

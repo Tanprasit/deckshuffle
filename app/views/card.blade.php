@@ -88,7 +88,6 @@
 	</div><!-- /.modal -->
 @stop
 @section('comments')
-	@if( $comments )
 	<div class="row">
 		<div class="col-xs-12 col-md-offset-2 col-md-8">
 			<div class="panel panel-default widget">
@@ -97,20 +96,19 @@
 				</div>
 				<div class="panel-body panel-no-padding">
 					<ul class="list-group">
-						<li class="list-group-item col-xs-12" id="first-comment">
+						@if (Auth::check())
+						<li class="list-group-item col-xs-12">
 							<div class="row">
 								<div class="col-xs-2">
-									<img src="http://placehold.it/40" class="img-circle img-responsive center-block" alt="">
+									<img src="http://placehold.it/80" class="img-circle img-responsive center-block" alt="">
 								</div>
 								<div class="col-xs-10">
 									<div class="input-group comment-textarea">
-										<form>
-											<textarea id="comment-input"class="form-control" cols="90" placeholder="Write a comment..."></textarea>
-											@if(Auth::check())
+										<form id="comment-form">
+											<textarea id="comment-input" class="form-control" cols="90" placeholder="Write a comment..." name="comment"></textarea>
 											<input class="hidden" type='text' name="user_id" value="{{Auth::user()->id}}">
 											<input class="hidden" type='text' name="card_id" value="{{$card->id}}">
 											<input id="rating" class="hidden" type='text' name="rating" value="">
-											@endif
 										</form>
 									</div>
 									<div class="rating-stars">
@@ -123,8 +121,16 @@
 								</div>
 							</div>
 						</li>
+					</ul>
+					@if( $comments )
+					<ul class="list-group" id="comment-list">
+						@endif
 						@foreach ($comments as $post)
-							<li class="list-group-item col-xs-12"> 
+							@if ($post == $comments[0])
+								<li class="list-group-item col-xs-12" id="first-comment"> 
+							@else
+								<li class="list-group-item col-xs-12"> 
+							@endif
 								<div class="row">
 									<div class="col-xs-2">
 										<img src="http://placehold.it/80" class="img-circle img-responsive center-block" alt="">
@@ -162,6 +168,12 @@
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star"></span>
+										@else
+											<span class="glyphicon glyphicon-star-empty"></span>
+											<span class="glyphicon glyphicon-star-empty"></span>
+											<span class="glyphicon glyphicon-star-empty"></span>
+											<span class="glyphicon glyphicon-star-empty"></span>
+											<span class="glyphicon glyphicon-star-empty"></span>
 										@endif
 									</div>
 								</div>
@@ -181,9 +193,11 @@
 			$('textarea').autosize();
 			$('textarea').on('keydown', function(e) {
 				if(e.keyCode == '13'){
-			        var comment = $('form').serialize();
-			        $.get('/comment/create', comment).done(function(data){ 
-			        	$('#first-comment').append("<li class='list-group-item col-xs-12'><div class='row'><div class='col-xs-2'><img src='http://placehold.it/80' class='img-circle img-responsive center-block' alt=''></div><div class='col-xs-10'><h5>Test</h5><p>data[0].data</p></div></div></li>");
+					e.preventDefault();
+			        var comment = $('#comment-form').serialize();
+			        $('textarea').val('');
+			        $.post('/comment', comment).done(function(data){ 
+			        	location.reload();
 		    		});
 			    }
 			});
