@@ -60,7 +60,18 @@
 		<p class="price price-padding"><span class="smaller">£</span>{{$post->card_price}}</p>
 		<button class="btn btn-primary btn-block btn-success">Add to basket</button><br>
 		<button class="btn btn-primary btn-block btn-success">Buy it now</button><br>
-		<button class="btn btn-primary btn-block btn-warning request-btn-spacing">Trade Request</button>
+		<button class="btn btn-primary btn-block btn-warning">Trade Request</button><br>
+		<h4>Seller Information</h4>
+		<table class="table">
+			<tr>
+				<td>Username</td>
+				<td>{{{$post->user->username}}}</td>
+			</tr>
+			<tr>
+				<td>Feedback</td>
+				<td>100%</td>
+			</tr>
+		</table>
 	</div>
 </div>
 @stop

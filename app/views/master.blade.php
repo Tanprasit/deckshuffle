@@ -26,7 +26,7 @@
 		        <div class="form-group">
 		        	<input type="text" id="search-bar" class="form-control dropdown" name="search" placeholder="Search" autocomplete='off'>
 		        	<div class="dropdown">
-			        	<ul class="dropdown-menu">
+			        	<ul class="dropdown-menu search-dropdown-menu">
 				    	</ul>
 		        	</div>
 		        </div>
@@ -35,23 +35,23 @@
 	    	<form class="navbar-form navbar-right">
 		        <div class="form-group">
 		        	@if(Auth::check())
-			    		<img class="img-circle user-img" src="{{asset('images/users/1.jpeg')}}">
-			    		<button class="btn btn-default btn-sm">
-				    		<span class="glyphicon glyphicon-globe"></span>
-			    		</button>
-			    		<button class="btn btn-default btn-sm">
-			    		<span class="glyphicon glyphicon-envelope"></span>
-			    		</button>
-			    		<button class="btn btn-default btn-sm">
-				    		<span class="glyphicon glyphicon-user"></span>
-			    		</button>
-			    		<button class="btn btn-default btn-sm">
-				    		<span class="glyphicon glyphicon-shopping-cart"></span>
-			    		</button>
-		        		<strong>
+			        	<img class="img-circle user-img" src="{{asset('images/users/1.jpeg')}}">
+		        		<button class="btn btn-default btn-sm">
+		        			<span class="glyphicon glyphicon-home"></span>
 		        			{{{ Auth::user()->username }}}
-		        			{{ link_to('logout', 'Log Out' )}}
-		        		</strong>
+			    		</button>
+			    		<button class="btn btn-default btn-sm">
+				    		<span class="glyphicon glyphicon-shopping-cart"></span> Basket
+			    		</button>
+		    			<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+				    		<span class="glyphicon glyphicon-cog"></span>
+				    		<span class="caret"></span>
+			    		</button>
+						<ul class="dropdown-menu">
+			    			<li><a href="#">Settings</a></li>
+			    			<li class="divider"></li>
+			    			<li>{{ link_to('logout', 'Log Out' )}}</li>
+			    		</ul>
 		        	@else
 		        		<strong>
 			        		{{ link_to('login', 'Sign In') }}

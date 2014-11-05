@@ -19,13 +19,13 @@ Route::get('/', function()
 Route::get('/market/{sortBy}', [
 	'as' => "sortedMarket",
 	'uses' => 'MarketController@sortBy'
-]);
+])->where('sortBy','[A-Za-z]+');
+
+Route::resource('market', 'MarketController');
 
 Route::resource('series', 'SeriesController');
 
 Route::resource('login', 'LoginController');
-
-Route::resource('market', 'MarketController');
 
 Route::resource('card', 'CardController');
 

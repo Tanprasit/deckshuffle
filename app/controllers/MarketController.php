@@ -142,7 +142,7 @@ class MarketController extends \BaseController {
 					->join('cards', 'cards.id','=','posts.card_id')
 					->join('users', 'users.id','=','posts.user_id')
 					->select('posts.id','cards.id as card_id','cards.name','cards.unique_identifier', 'posts.item_condition', 'posts.item_location', 'posts.free_postage','posts.postage_cost', 'posts.post_to', 'posts.returns', 'posts.card_price', 'cards.jap_name', 'users.username')
-					->orderBy('item_condition', 'asc')
+					->orderBy('item_condition', 'desc')
 					->paginate(10);
 
 					return View::make('market')

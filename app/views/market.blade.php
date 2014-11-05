@@ -13,11 +13,13 @@
 				<h3 class="panel-title">Categories</h3>
 			</div>
 			<div class="panel-body">
-				@foreach($series as $series)
-					<input type="checkbox" name="chosen_series" value="{{$series->id}}">
-					{{$series->name }}
-					<br>
+				<div class="checkBox"> 
+					@foreach($series as $series)
+						<input type="checkbox" name="chosen_series" value="{{$series->id}}">
+						{{$series->name }}
+						<br>
 				@endforeach
+				</div>
 			</div>
 		</div>
 	</div>
@@ -85,10 +87,5 @@
 	</div>
 @stop
 @section('scripts')
-<script type="text/javascript">
-	function sortBy(str) {
-		console.log(str);
-		location.replace('/market/' + str);
-	}
-</script>
+<script type="text/javascript" src="{{URL::asset('js/sort.js')}}"></script>
 @stop
