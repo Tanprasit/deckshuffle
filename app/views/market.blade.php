@@ -27,12 +27,12 @@
 				<h4 class="">List by Item</h4>
 				<nav>
 				  {{$posts->links()}}
-	  				<select class="sort">
+	  				<select class="sort" onChange="sortBy(this.value)">
 						<option>Sort by Relevance</option>
-						<option>Sort by Price - Lowest</option>
-						<option>Sort by Price - Highest</option>
-						<option>Sort by Condition - New First</option>
-						<option>Sort by Condition - Used First</option>
+						<option value="lowest">Sort by Price - Lowest</option>
+						<option value="highest">Sort by Price - Highest</option>
+						<option value="newest">Sort by Condition - New First</option>
+						<option value="used">Sort by Condition - Used First</option>
 					</select>
 				</nav>
 			</div>
@@ -66,7 +66,7 @@
 										<p class="price"><span class="smaller">£</span>{{$post->card_price}}</p>
 									</div>
 									<div class="col-xs-6 col-sm-12">
-										<button class="btn btn-pimary btn-success more-detail-btn market-button" onClick="location.href='{{asset('market/'.$post->id.'')}}'">More Detail</button>
+										<button class="btn btn-pimary btn-success more-detail-btn market-button" onClick="location.href='{{asset('market/' . $post->id . '')}}'">More Detail</button>
 									</div>
 								</div>
 							</div>
@@ -83,4 +83,12 @@
 			</nav>
 		</div>
 	</div>
+@stop
+@section('scripts')
+<script type="text/javascript">
+	function sortBy(str) {
+		console.log(str);
+		location.replace('/market/' + str);
+	}
+</script>
 @stop

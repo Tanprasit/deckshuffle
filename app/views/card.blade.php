@@ -96,7 +96,7 @@
 				</div>
 				<div class="panel-body panel-no-padding">
 					<ul class="list-group">
-						@if (Auth::check())
+					@if ( Auth::check() )
 						<li class="list-group-item col-xs-12">
 							<div class="row">
 								<div class="col-xs-2">
@@ -123,9 +123,10 @@
 							</div>
 						</li>
 					</ul>
+					@endif
 					@if( $comments )
 					<ul class="list-group" id="comment-list">
-						@endif
+					@endif
 						@foreach ($comments as $post)
 							@if ($post == $comments[0])
 								<li class="list-group-item col-xs-12" id="first-comment"> 
@@ -186,7 +187,6 @@
 			</div>
 		</div>
 	</div>
-	@endif
 @stop
 @section('scripts')
 	<script type="text/javascript">

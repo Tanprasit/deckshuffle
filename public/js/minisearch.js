@@ -2,8 +2,6 @@ $(function() {
 	var req = null;
 	var oldSearch = '';
 	$('#search-bar').on("keyup", function(e) {
-
-		$('.dropdown-menu').empty();
 		if ($(!'.dropdown-menu').children()) {
 			$('.dropdown-menu').hide()
 		};
@@ -12,6 +10,7 @@ $(function() {
 		var $this = $(this);	// thing that emmited the event
 		var newSearch = $this.val();
 		if (newSearch != oldSearch) {
+			$('.dropdown-menu').empty();
 			oldSearch = newSearch;
 			if ($this.val() != '') {
 				// abort previous request

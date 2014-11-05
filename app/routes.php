@@ -16,6 +16,11 @@ Route::get('/', function()
 	return View::make('news');
 });
 
+Route::get('/market/{sortBy}', [
+	'as' => "sortedMarket",
+	'uses' => 'MarketController@sortBy'
+]);
+
 Route::resource('series', 'SeriesController');
 
 Route::resource('login', 'LoginController');
