@@ -103,7 +103,7 @@
 						<li class="list-group-item col-xs-12">
 							<div class="row">
 								<div class="col-xs-2">
-									<img src="http://placehold.it/80" class="img-circle img-responsive center-block" alt="">
+									<img class="img-circle profile-img" src="{{ asset('images/users/1.jpeg') }}">
 								</div>
 								<div class="col-xs-10">
 									<h5>{{ Auth::user()->username }}</h5>

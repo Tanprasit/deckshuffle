@@ -50,8 +50,10 @@ class UserController extends \BaseController {
 	{
 		//
 		$user = User::find($id);
-		return View::make('user')
-			->with('user', $user);
+		$posts = Post::where('user_id', '=' , $id)->orderBy('created_at', 'asc')->paginate(10);
+		return View::make('profile')
+			->with('user', $user)
+			->with('posts', $posts);
 	}
 
 

@@ -58,7 +58,9 @@
 		<table class="table">
 			<tr>
 				<td>Username</td>
-				<td>{{{ $post->user->username }}}</td>
+				<td>
+					<a href="{{url('user/'. $post->user->id )}}">{{{ $post->user->username }}}</a>
+				</td>
 			</tr>
 			<tr>
 				<td>Feedback</td>

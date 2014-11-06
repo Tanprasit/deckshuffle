@@ -18,6 +18,15 @@
 						<br>
 				@endforeach
 				</div>
+				<div class="pull-left">
+					<select class="sort" onChange="sortBy(this.value)">
+							<option>Sort by Relevance</option>
+							<option id="lowest"  value="lowest">Sort by Price - Lowest</option>
+							<option id="highest" value="highest">Sort by Price - Highest</option>
+							<option id="newest" value="newest">Sort by Condition - New First</option>
+							<option id="used" value="used">Sort by Condition - Used First</option>
+						</select>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -25,26 +34,16 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4 class="">List by Item</h4>
-				<nav>
-				  {{ $posts->links() }}
-	  				<select class="sort" onChange="sortBy(this.value)">
-						<option>Sort by Relevance</option>
-						<option id="lowest"  value="lowest">Sort by Price - Lowest</option>
-						<option id="highest" value="highest">Sort by Price - Highest</option>
-						<option id="newest" value="newest">Sort by Condition - New First</option>
-						<option id="used" value="used">Sort by Condition - Used First</option>
-					</select>
-				</nav>
 			</div>
 			<div class="panel-body">
 				@foreach( $posts as $post )
 					<div class="row">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2">
+						<div class="col-xs-5 col-sm-4 col-md-4 col-lg-2">
 							<a class="market-link" href="{{asset('market/' . $post->id .'')}}">
 								<img class="market-img  image-responsive center-block" src="{{asset('images/cards/'. $post->card_id . '.jpeg')}}">
 							</a>
 						</div>
-						<div class="col-xs-8 col-sm-8 col-md-8 col-lg-10">	
+						<div class="col-xs-6 col-sm-8 col-md-8 col-lg-10">	
 							<h5><a href="{{asset('market/' . $post->id .'')}}">{{ $post->card->name . ' - ' }} {{ $post->card->unique_identifier }}</a></h5>
 							<div class="row">
 								<div class="col-sm-6">
@@ -65,8 +64,8 @@
 									<div class="col-xs-6 col-sm-12">
 										<p class="price"><span class="smaller">£</span>{{ $post->card_price }}</p>
 									</div>
-									<div class="col-xs-6 col-sm-12">
-										<button class="btn btn-pimary btn-success more-detail-btn market-button" onClick="location.href='{{asset('market/' . $post->id . '')}}'">More Detail</button>
+									<div class="col-xs-6 col-sm-12 hidden-xs">
+										<button class="btn btn-pimary btn-success more-detail-btn market-button" onClick="location.href='{{ asset('market/' . $post->id . '') }}'">More Detail</button>
 									</div>
 								</div>
 							</div>

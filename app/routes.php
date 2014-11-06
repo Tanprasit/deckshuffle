@@ -41,10 +41,17 @@ Route::get('logout', function() {
 		->with('message', 'You have logged out');
 });
 
+Route::group(['before' => 'auth'], function() {
+	Route::get('user/{id}/profile', function($id) {
+		$user = User::find($id);
+		return View::make('profile')
+			->with('user', $user);
+	});
+});
+
 Route::get('search/cards/', function() {
 	$query = Input::get('query');
 	$cards = Card::where('cards.name', 'LIKE', '%'.$query.'%')->paginate(10);
-	// $cards = DB::table('cards')->join('series', 'cards.series_id','=','series.id')->select('cards.id','cards.name','cards.unique_identifier', 'series.name as series_name', 'cards.type', 'level', 'power')->where('cards.name', 'LIKE', '%'.$query.'%')->get();
 	return View::make('results')
 		->with('cards', $cards)
 		->with('query', $query)

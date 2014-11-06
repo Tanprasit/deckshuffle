@@ -35,8 +35,7 @@
 	    	<form class="navbar-form navbar-right">
 		        <div class="form-group">
 		        	@if( Auth::check() )
-			        	<img class="img-circle user-img" src="{{asset('images/users/1.jpeg')}}">
-		        		<button class="btn btn-default btn-sm">
+		        		<button type="button" class="btn btn-default btn-sm" onClick="location.href='{{{ url('user/' . Auth::user()->id ) }}}'">
 		        			<span class="glyphicon glyphicon-home"></span>
 		        			{{{ Auth::user()->username }}}
 			    		</button>

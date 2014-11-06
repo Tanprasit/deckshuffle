@@ -6,13 +6,6 @@
 	</div>
 </div>
 <div class="col-md-8 col-md-offset-2">
-	<div class="well well-sm">
-		<nav>
-			{{ $news->links() }}
-		</nav>
-	</div>
-</div>
-<div class="col-md-8 col-md-offset-2">
 	@foreach($news as $article)
 		<div class="panel panel-default">
 			<div class="panel-heading">

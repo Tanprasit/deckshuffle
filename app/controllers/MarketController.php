@@ -9,7 +9,7 @@ class MarketController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = Post::paginate(10);
+		$posts = Post::with('user','card')->paginate(10);
 		$sortType = '';
 		
 		$series = Series::all();
@@ -100,23 +100,23 @@ class MarketController extends \BaseController {
 
 		switch ($sortBy) {
 			case 'highest':
-				$posts = Post::orderBy('card_price', 'desc');
+				$posts = Post::with('user','card')->orderBy('card_price', 'desc');
 				$sortType = 'highest';
 				break;
 			case 'lowest':
-				$posts = Post::orderBy('card_price', 'asc');
+				$posts = Post::with('user','card')->orderBy('card_price', 'asc');
 				$sortType = 'lowest';
 				break;
 			case 'newest':
-				$posts = Post::orderBy('item_condition', 'asc');
+				$posts = Post::with('user','card')->orderBy('item_condition', 'asc');
 				$sortType = 'newest';
 				break;
 			case 'used':
-				$posts = Post::orderBy('item_condition', 'desc');
+				$posts = Post::with('user','card')->orderBy('item_condition', 'desc');
 				$sortType = 'used';
 				break;
 			default:
-				$posts = Post::orderBy('updated_at', 'asc');
+				$posts = Post::with('user','card')->orderBy('updated_at', 'asc');
 				break;
 		}
 
