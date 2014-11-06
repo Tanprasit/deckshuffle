@@ -21,7 +21,7 @@
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	    	@yield('navbar')
+	    	@include('widgets.nav')
 	      	<form class="navbar-form navbar-left" role="search" method="get" action="{{asset('search')}}">
 		        <div class="form-group">
 		        	<input type="text" id="search-bar" class="form-control dropdown" name="search" placeholder="Search" autocomplete='off'>
@@ -34,7 +34,7 @@
 	    	</form>
 	    	<form class="navbar-form navbar-right">
 		        <div class="form-group">
-		        	@if(Auth::check())
+		        	@if( Auth::check() )
 			        	<img class="img-circle user-img" src="{{asset('images/users/1.jpeg')}}">
 		        		<button class="btn btn-default btn-sm">
 		        			<span class="glyphicon glyphicon-home"></span>
@@ -63,14 +63,14 @@
 	</div><!-- /.container-fluid -->
 </nav>
 <div class="container">
-	@if(Session::has('message'))
+	@if( Session::has('message') )
 		<div class='alert alert-success'>
-			{{Session::get('message')}}
+			{{ Session::get('message') }}
 		</div>
 	@endif
 	@if(Session::has('error'))
 		<div class='alert alert-warning'>
-			{{Session::get('error')}}
+			{{ Session::get('error') }}
 		</div>
 	@endif
 	@yield('content')

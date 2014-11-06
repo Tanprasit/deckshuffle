@@ -1,12 +1,5 @@
-@extends('master')
-@section('navbar')
-	<ul class="nav navbar-nav">
-		<li><a href="{{asset('news')}}">News</a></li>
-		<li><a href="{{asset('series')}}">Series</a></li>
-		<li><a href="{{asset('market')}}">Market</a></li>
-	</ul>
-@stop
-@section('content')
+@extends( 'master' )
+@section( 'content' )
 <div class="row">
 	<div class="col-md-8 border">
 		<div class="row">
@@ -14,39 +7,39 @@
 				<img class="card-single-image responsive-image center-block" src="/images/cards/{{$post->card->id}}.jpeg">
 			</div>
 			<div class="col-md-8">
-				<h3>{{$post->card->name}} - {{$post->card->unique_identifier}}</h3>
+				<h3>{{ $post->card->name }} - {{ $post->card->unique_identifier }}</h3>
 				<table class="table table-striped">
 					<tr>
 						<td>Item Condition</td>
-						<td>{{$post->item_condition}}</td>
+						<td>{{ $post->item_condition }}</td>
 					</tr>
 					<tr>
 						<td>Quanity</td>
-						<td>{{$post->quantity}}</td>
+						<td>{{ $post->quantity }}</td>
 					</tr>
 					<tr>
 						<td>Postage</td>
-						@if($post->free_postage)
+						@if( $post->free_postage )
 							<td><strong>Free</strong></td>
 						@else
-							<td>£{{$post->postage_cost}}</td>
+							<td>£{{ $post->postage_cost }}</td>
 						@endif
 					</tr>
 					<tr>
 						<td>Item Location</td>
-						<td>{{$post->item_location}}</td>
+						<td>{{ $post->item_location }}</td>
 					</tr>
 					<tr>
 						<td>Posts to</td>
-						<td>{{$post->post_to}}</td>
+						<td>{{ $post->post_to }}</td>
 					</tr>
 					<tr>
 						<td>Dispatch Time</td>
-						<td>{{$post->dispatch_time}}</td>
+						<td>{{ $post->dispatch_time }}</td>
 					</tr>
 					<tr>
 						<td>Returns</td>
-						@if($post->returns)
+						@if( $post->returns )
 							<td>Returns accepted</td>
 						@else
 							<td>Returns not accepted</td>
@@ -57,7 +50,7 @@
 		</div>
 	</div>
 	<div class="col-md-3 col-md-offset-1 border">
-		<p class="price price-padding"><span class="smaller">£</span>{{$post->card_price}}</p>
+		<p class="price price-padding"><span class="smaller">£</span>{{ $post->card_price }}</p>
 		<button class="btn btn-primary btn-block btn-success">Add to basket</button><br>
 		<button class="btn btn-primary btn-block btn-success">Buy it now</button><br>
 		<button class="btn btn-primary btn-block btn-warning">Trade Request</button><br>
@@ -65,7 +58,7 @@
 		<table class="table">
 			<tr>
 				<td>Username</td>
-				<td>{{{$post->user->username}}}</td>
+				<td>{{{ $post->user->username }}}</td>
 			</tr>
 			<tr>
 				<td>Feedback</td>

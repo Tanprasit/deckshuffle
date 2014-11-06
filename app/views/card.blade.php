@@ -1,28 +1,22 @@
-@extends('master')
-@section('navbar')
-	<ul class="nav navbar-nav">
-		<li><a href="{{asset('news')}}">News</a></li>
-		<li><a href="{{asset('series')}}">Series</a></li>
-		<li><a href="{{asset('market')}}">Market</a></li>
-	</ul>
-@stop
-@section('content')
+@extends( 'master' )
+@section( 'content' )
 	<div class="row">
 		<ol class="breadcrumb">
 			<li><a href="{{ URL::route('news.index')}}">Home</a></li>
 			<li><a href="{{ URL::route('series.index') }}">Series</a></li>
 			<li><a href="{{ $card->series->url }}">{{ $card->series->name }}</a></li>
-			<li class="active">{{$card->unique_identifier}}</li>
+			<li class="active">{{ $card->unique_identifier }}</li>
 		</ol>
 	</div>
 	<div class="row">
 		<div class="col-xs-12 col-md-offset-2 col-md-8">
-			<h3>{{$card->name}}</h3>
-			<h4 class="row-line">{{$card->jap_name}}</h4>
+			<h3>{{ $card->name }}</h3>
+			<h4 class="row-line">{{ $card->jap_name }}</h4>
 		</div>
 		<div class="col-xs-12 col-md-12">
 			<a data-toggle="modal" data-target="#image-modal" href="">
-				<img class="card-single-image image-responsive center-block" src="{{asset('/images/cards/' . $card->id . '.jpeg')}}">
+				<!-- I know you hate this nathan but please let this go for now :) -->
+				<img class="card-single-image image-responsive center-block" src="{{ asset('/images/cards/' . $card->id . '.jpeg') }}">
 			</a>
 		</div>
 	</div>
@@ -31,9 +25,9 @@
 			<table class="table table-striped">
 				<tr>
 					<td><label>Type</label></td>
-					<td>{{$card->type}}</td>
+					<td>{{ $card->type }}</td>
 					<td><label>Level</label></td>
-					<td>{{$card->level}}</td>
+					<td>{{ $card->level }}</td>
 				</tr>
 				<tr>
 					<td><label>Colour</label></td>
@@ -82,7 +76,7 @@
 	<div class="modal fade" id="image-modal">
 		<div class="modal-dialog">
 			<div class="modal-content modal-popup-image">
-				<img class="popup-image" src="{{asset('/images/cards/' . $card->id . '.jpeg')}}">
+				<img class="popup-image" src="{{ asset('/images/cards/' . $card->id . '.jpeg') }}">
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
@@ -103,12 +97,12 @@
 									<img src="http://placehold.it/80" class="img-circle img-responsive center-block" alt="">
 								</div>
 								<div class="col-xs-10">
-									<h5>{{Auth::user()->username}}</h5>
+									<h5>{{ Auth::user()->username }}</h5>
 									<div class="input-group comment-textarea">
 										<form id="comment-form">
 											<textarea id="comment-input" class="form-control" cols="90" placeholder="Write a comment..." name="comment"></textarea>
-											<input class="hidden" type='text' name="user_id" value="{{{Auth::user()->id}}}">
-											<input class="hidden" type='text' name="card_id" value="{{{$card->id}}}">
+											<input class="hidden" type='text' name="user_id" value="{{{ Auth::user()->id }}}">
+											<input class="hidden" type='text' name="card_id" value="{{{ $card->id }}}">
 											<input id="rating" class="hidden" type='text' name="rating" value="">
 										</form>
 									</div>
@@ -122,13 +116,17 @@
 								</div>
 							</div>
 						</li>
-					</ul>
+					@else 
+						<li>
+							<button class="btn btn-primary success center-block" onClick="location.href='{{URL::route('login.index')}}'">Please sign-in to comment</button>
+						</li>
 					@endif
+					</ul>
 					@if( $comments )
 					<ul class="list-group" id="comment-list">
 					@endif
-						@foreach ($comments as $post)
-							@if ($post == $comments[0])
+						@foreach( $comments as $post )
+							@if( $post == $comments[0] )
 								<li class="list-group-item col-xs-12" id="first-comment"> 
 							@else
 								<li class="list-group-item col-xs-12"> 
@@ -138,32 +136,32 @@
 										<img src="http://placehold.it/80" class="img-circle img-responsive center-block" alt="">
 									</div>
 									<div class="col-xs-10">
-										<h5>{{$post->user->username}}</h5>
-										@if ($post->rating == 1)
+										<h5>{{ $post->user->username }}</h5>
+										@if( $post->rating == 1 )
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
-										@elseif ($post->rating == 2)
+										@elseif( $post->rating == 2 )
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
-										@elseif ($post->rating == 3)
+										@elseif( $post->rating == 3 )
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
-										@elseif ($post->rating == 4)
+										@elseif( $post->rating == 4 )
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
-										@elseif ($post->rating == 5)
+										@elseif( $post->rating == 5 )
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star"></span>
@@ -176,8 +174,8 @@
 											<span class="glyphicon glyphicon-star-empty"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
 										@endif
-										<p>{{$post->comment}}</p>
-										<p>{{$post->created_at->diffForHumans()}}</p>
+										<p>{{ $post->comment }}</p>
+										<p>{{ $post->created_at->diffForHumans() }}</p>
 									</div>
 								</div>
 							</li>
@@ -189,77 +187,5 @@
 	</div>
 @stop
 @section('scripts')
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('.modal-dialog').css('width', '370px');
-			$('textarea').autosize();
-			$('textarea').on('keydown', function(e) {
-				if(e.keyCode == '13'){
-					e.preventDefault();
-			        var comment = $('#comment-form').serialize();
-			        $('textarea').val('');
-			        $.post('/comment', comment).done(function(data){ 
-			        	location.reload();
-		    		});
-			    }
-			});
-			$('#star1').hover(
-				function() {
-					$(this).addClass("glyphicon-star");
-					$(this).prevAll().addClass("glyphicon-star");
-					$(this).removeClass("glyphicon-star-empty");
-					$(this).prevAll().removeClass("glyphicon-star-empty");
-					$(this).nextAll().addClass("glyphicon-star-empty");
-					$('#rating').attr('value',1);
-				}
-			);
-			$('#star2').hover(
-				function() {
-					$(this).addClass("glyphicon-star");
-					$(this).prevAll().addClass("glyphicon-star");
-					$(this).removeClass("glyphicon-star-empty");
-					$(this).prevAll().removeClass("glyphicon-star-empty");
-					$(this).nextAll().addClass("glyphicon-star-empty");
-					$('#rating').attr('value',2);
-				}
-			);
-			$('#star3').hover(
-				function() {
-					$(this).addClass("glyphicon-star");
-					$(this).prevAll().addClass("glyphicon-star");
-					$(this).removeClass("glyphicon-star-empty");
-					$(this).prevAll().removeClass("glyphicon-star-empty");
-					$(this).nextAll().addClass("glyphicon-star-empty");
-					$('#rating').attr('value',3);
-				}
-			);
-			$('#star4').hover(
-				function() {
-					$(this).addClass("glyphicon-star");
-					$(this).prevAll().addClass("glyphicon-star");
-					$(this).removeClass("glyphicon-star-empty");
-					$(this).prevAll().removeClass("glyphicon-star-empty");
-					$(this).nextAll().addClass("glyphicon-star-empty");
-					$('#rating').attr('value',4);
-				}
-			);
-			$('#star5').hover(
-				function() {
-					$(this).addClass("glyphicon-star");
-					$(this).prevAll().addClass("glyphicon-star");
-					$(this).removeClass("glyphicon-star-empty");
-					$(this).prevAll().removeClass("glyphicon-star-empty");
-					$('#rating').attr('value',5);
-				}
-			);
-			$('#star5').click(
-				function() {
-					$(this).addClass("glyphicon-star");
-					$(this).prevAll().addClass("glyphicon-star");
-					$(this).removeClass("glyphicon-star-empty");
-					$(this).prevAll().removeClass("glyphicon-star-empty");
-				}
-			);
-		});
-	</script>
+<script type="text/javascript" src="{{ asset('/js/rating.js')}}"></script>
 @stop

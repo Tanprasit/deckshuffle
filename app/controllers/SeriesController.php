@@ -10,7 +10,7 @@ class SeriesController extends \BaseController {
 	public function index()
 	{
 		//
-		$cards = null;
+		$cards = [];
 		$series = Series::all();
 		return View::make('series')
 			->with('series', $series)
@@ -50,6 +50,7 @@ class SeriesController extends \BaseController {
 	{
 		//
 		$cards = DB::table('cards')->where('series_id', $id)->get();
+
 		$series = DB::table('series')->where('id', $id)->first();
 
 		return View::make('series')

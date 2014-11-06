@@ -1,18 +1,11 @@
-@extends('master')
-@section('navbar')
-	<ul class="nav navbar-nav">
-		<li><a href="{{asset('news')}}">News</a></li>
-		<li><a href="{{asset('series')}}">Series</a></li>
-		<li><a href="{{asset('market')}}">Market</a></li>
-	</ul>
-@stop
-@section('content')
+@extends( 'master' )
+@section( 'content' )
 <section id="login">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="form-wrap">
 				<h1>Login with your username</h1>
-				{{Form::open(array('id' => 'login'))}}
+				{{ Form::open(array('id' => 'login')) }}
 				<div class="form-group has-feedback">
 					{{ Form::text( 'username', $value = null, array('class' => 'form-control username-input', 'placeholder' => 'Username')) }}
 				</div>

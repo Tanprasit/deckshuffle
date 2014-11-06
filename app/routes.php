@@ -59,17 +59,3 @@ Route::get('mini-search', function() {
 // 	$cart[$id] = Model::find($id);
 // 	Session::put('cart', $cart);
 // });
-
-// api end point js code will request this
-// Route::get('api/v1/posts',[
-// 	// return Response::json(['thing'=>'thing2']);
-// 	'as' => 'api.post', 
-// 	function() {
-// 		if (rand(0.1)) {
-// 			return Post::all();
-// 		} else {
-// 			return Response::json(['messages'=>['nooo!']],400);
-// 		}
-
-// 	}
-// ]);

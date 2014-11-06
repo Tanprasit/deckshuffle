@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class Comment extends Eloquent {
 	protected $table ='comments';
-	protected $fillable = array('id', 'user_id', 'card_id', 'comment', 'rating');
+	protected $fillable = array('id', 'user_id', 'card_id', 'comment', 'rating');	
 
 	public function card()
 	{

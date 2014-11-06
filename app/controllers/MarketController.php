@@ -9,15 +9,10 @@ class MarketController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = DB::table('posts')
-			->join('cards', 'cards.id','=','posts.card_id')
-			->join('users', 'users.id','=','posts.user_id')
-			->select('posts.id','cards.id as card_id','cards.name','cards.unique_identifier', 'posts.item_condition', 'posts.item_location', 'posts.free_postage','posts.postage_cost', 'posts.post_to', 'posts.returns', 'posts.card_price', 'cards.jap_name', 'users.username')
-			->paginate(10);
-
-		// $posts = DB::table('posts')->take(10)->get();
-
+		$posts = Post::paginate(10);
+		
 		$series = Series::all();
+
 		return View::make('market')
 			->with('series', $series)
 			->with('posts', $posts);
@@ -97,63 +92,32 @@ class MarketController extends \BaseController {
 	}
 
 	public function sortBy($sortBy) {
+
 		$series = Series::all();
 
-		if ($sortBy == "highest") {
-			$posts = DB::table('posts')
-				->join('cards', 'cards.id','=','posts.card_id')
-				->join('users', 'users.id','=','posts.user_id')
-				->select('posts.id','cards.id as card_id','cards.name','cards.unique_identifier', 'posts.item_condition', 'posts.item_location', 'posts.free_postage','posts.postage_cost', 'posts.post_to', 'posts.returns', 'posts.card_price', 'cards.jap_name', 'users.username')
-				->orderBy('card_price', 'desc')
-				->paginate(10);
-
-				return View::make('market')
-					->with('series', $series)
-					->with('posts', $posts);
-		} 
-		elseif ($sortBy == "lowest") {
-			$posts = DB::table('posts')
-				->join('cards', 'cards.id','=','posts.card_id')
-				->join('users', 'users.id','=','posts.user_id')
-				->select('posts.id','cards.id as card_id','cards.name','cards.unique_identifier', 'posts.item_condition', 'posts.item_location', 'posts.free_postage','posts.postage_cost', 'posts.post_to', 'posts.returns', 'posts.card_price', 'cards.jap_name', 'users.username')
-				->orderBy('card_price', 'asc')
-				->paginate(10);
-
-				return View::make('market')
-					->with('series', $series)
-					->with('posts', $posts);
+		switch ($sortBy) {
+			case 'highest':
+				$posts = Post::orderBy('card_price', 'desc');
+				break;
+			case 'lowest':
+				$posts = Post::orderBy('card_price', 'asc');
+				break;
+			case 'newest':
+				$posts = Post::orderBy('item_condition', 'asc');
+				break;
+			case 'used':
+				$posts = Post::orderBy('item_condition', 'desc');
+				break;
+			default:
+				$posts = Post::orderBy('updated_at', 'asc');
+				break;
 		}
 
-		elseif ($sortBy == "newest") {
-			$posts = DB::table('posts')
-					->join('cards', 'cards.id','=','posts.card_id')
-					->join('users', 'users.id','=','posts.user_id')
-					->select('posts.id','cards.id as card_id','cards.name','cards.unique_identifier', 'posts.item_condition', 'posts.item_location', 'posts.free_postage','posts.postage_cost', 'posts.post_to', 'posts.returns', 'posts.card_price', 'cards.jap_name', 'users.username')
-					->orderBy('item_condition', 'asc')
-					->paginate(10);
+		$posts = $posts->paginate(10);
 
-					return View::make('market')
+		return View::make('market')
 						->with('series', $series)
 						->with('posts', $posts);
-		}
-
-		elseif ($sortBy == "used") {
-			$posts = DB::table('posts')
-					->join('cards', 'cards.id','=','posts.card_id')
-					->join('users', 'users.id','=','posts.user_id')
-					->select('posts.id','cards.id as card_id','cards.name','cards.unique_identifier', 'posts.item_condition', 'posts.item_location', 'posts.free_postage','posts.postage_cost', 'posts.post_to', 'posts.returns', 'posts.card_price', 'cards.jap_name', 'users.username')
-					->orderBy('item_condition', 'desc')
-					->paginate(10);
-
-					return View::make('market')
-						->with('series', $series)
-						->with('posts', $posts);
-		}
-
-		else {
-			return App::abort(404);
-		}
-		
 	}
 
 }
