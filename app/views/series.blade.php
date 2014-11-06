@@ -1,6 +1,11 @@
 @extends('master')
 @section('content')
 <div class="row">
+	<div class="page-header">
+		<h1>Weiβ Schwarz <small>- Series</small></h1>
+	</div>
+</div>
+<div class="row">
 	<ol class="breadcrumb">
 		<li>
 			<a href="{{asset('news')}}">Home</a>

@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('news');
+	return Redirect::to('news');
 });
 
 Route::get('/market/{sortBy}', [
@@ -37,19 +37,22 @@ Route::resource('comment', 'CommentsController');
 
 Route::get('logout', function() {
 	Auth::logout();
-	return Redirect::to('/')
+	return Redirect::to('news')
 		->with('message', 'You have logged out');
 });
 
-Route::get('search', function() {
-	$query = Input::get('search');
-	$cards = DB::table('cards')->join('series', 'cards.series_id','=','series.id')->select('cards.id','cards.name','cards.unique_identifier', 'series.name as series_name', 'cards.type', 'level', 'power')->where('cards.name', 'LIKE', '%'.$query.'%')->get();
+Route::get('search/cards/', function() {
+	$query = Input::get('query');
+	$cards = Card::where('cards.name', 'LIKE', '%'.$query.'%')->paginate(10);
+	// $cards = DB::table('cards')->join('series', 'cards.series_id','=','series.id')->select('cards.id','cards.name','cards.unique_identifier', 'series.name as series_name', 'cards.type', 'level', 'power')->where('cards.name', 'LIKE', '%'.$query.'%')->get();
 	return View::make('results')
-		->with('cards', $cards);
+		->with('cards', $cards)
+		->with('query', $query)
+		->with('count', $cards->count);
 });
 
-Route::get('mini-search', function() {
-	$query = Input::get('search');
+Route::get('quicksearch/cards/', function() {
+	$query = Input::get('query');
 	$cards = DB::table('cards')->join('series', 'cards.series_id','=','series.id')->select('cards.id','cards.name','cards.unique_identifier', 'series.name as series_name', 'cards.type', 'level', 'power')->where('cards.name', 'LIKE', '%'.$query.'%')->take(4)->get();
 	return Response::json($cards);
 });

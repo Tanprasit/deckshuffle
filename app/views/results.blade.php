@@ -1,12 +1,10 @@
 @extends('master')
-@section('navbar')
-	<ul class="nav navbar-nav">
-		<li><a href="{{asset('news')}}">News</a></li>
-		<li><a href="{{asset('series')}}">Series</a></li>
-		<li><a href="{{asset('market')}}">Market</a></li>
-	</ul>
-@stop
 @section('content')
+	<div class="row">
+		<div class="page-header">
+			<h1>Weiβ Schwarz <small>- Search Results for {{$query}} {{$count}}</small></h1>
+		</div>
+	</div>
 	@foreach($cards as $card)
 		<div class="row result-row-border">
 			<div class="col-sm-2  col-sm-offset-2">

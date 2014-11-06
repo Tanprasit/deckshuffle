@@ -34,7 +34,7 @@ class LoginController extends \BaseController {
 	{
 		//
 		if (Auth::attempt(Input::only('username', 'password'))) {
-			return Redirect::intended('/');
+			return Redirect::intended('news');
 		} else {
 			return Redirect::back()->withInput()->with('error', "invalid credentials");
 		}

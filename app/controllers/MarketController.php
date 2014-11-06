@@ -10,12 +10,14 @@ class MarketController extends \BaseController {
 	public function index()
 	{
 		$posts = Post::paginate(10);
+		$sortType = '';
 		
 		$series = Series::all();
 
 		return View::make('market')
 			->with('series', $series)
-			->with('posts', $posts);
+			->with('posts', $posts)
+			->with('sortType', $sortType);
 	}
 
 
@@ -94,19 +96,24 @@ class MarketController extends \BaseController {
 	public function sortBy($sortBy) {
 
 		$series = Series::all();
+		$sortType = '';
 
 		switch ($sortBy) {
 			case 'highest':
 				$posts = Post::orderBy('card_price', 'desc');
+				$sortType = 'highest';
 				break;
 			case 'lowest':
 				$posts = Post::orderBy('card_price', 'asc');
+				$sortType = 'lowest';
 				break;
 			case 'newest':
 				$posts = Post::orderBy('item_condition', 'asc');
+				$sortType = 'newest';
 				break;
 			case 'used':
 				$posts = Post::orderBy('item_condition', 'desc');
+				$sortType = 'used';
 				break;
 			default:
 				$posts = Post::orderBy('updated_at', 'asc');
@@ -117,7 +124,8 @@ class MarketController extends \BaseController {
 
 		return View::make('market')
 						->with('series', $series)
-						->with('posts', $posts);
+						->with('posts', $posts)
+						->with('sortType', $sortType);
 	}
 
 }

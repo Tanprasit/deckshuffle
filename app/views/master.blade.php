@@ -22,9 +22,9 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	    	@include('widgets.nav')
-	      	<form class="navbar-form navbar-left" role="search" method="get" action="{{asset('search')}}">
+	      	<form class="navbar-form navbar-left" role="search" method="get" action="{{url('search/cards/')}}">
 		        <div class="form-group">
-		        	<input type="text" id="search-bar" class="form-control dropdown" name="search" placeholder="Search" autocomplete='off'>
+		        	<input type="text" id="search-bar" class="form-control dropdown" name="query" placeholder="Search" autocomplete='off'>
 		        	<div class="dropdown">
 			        	<ul class="dropdown-menu search-dropdown-menu">
 				    	</ul>

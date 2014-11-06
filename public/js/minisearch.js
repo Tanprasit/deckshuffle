@@ -17,7 +17,7 @@ $(function() {
 				if (req != null) {
 					req.abort()
 				};
-				req = $.get('/mini-search', searchValue).done(function( data ) {
+				req = $.get('quicksearch/cards/', searchValue).done(function( data ) {
 					for (var i = 0; i < data.length; i++) {
 						if (i == 0) {
 							$('.search-dropdown-menu').append('<li role="presentation" class="dropdown-header">Card suggestions for ' + newSearch + '</li>');

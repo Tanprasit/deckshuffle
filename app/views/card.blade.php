@@ -1,12 +1,21 @@
 @extends( 'master' )
 @section( 'content' )
 	<div class="row">
-		<ol class="breadcrumb">
-			<li><a href="{{ URL::route('news.index')}}">Home</a></li>
-			<li><a href="{{ URL::route('series.index') }}">Series</a></li>
-			<li><a href="{{ $card->series->url }}">{{ $card->series->name }}</a></li>
-			<li class="active">{{ $card->unique_identifier }}</li>
-		</ol>
+		<div class="col-xs-12 col-md-offset-2 col-md-8">
+			<div class="page-header">
+				<h1>Weiβ Schwarz <small>- Card</small></h1>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-md-offset-2 col-md-8">
+			<ol class="breadcrumb">
+				<li><a href="{{ URL::route('news.index')}}">Home</a></li>
+				<li><a href="{{ URL::route('series.index') }}">Series</a></li>
+				<li><a href="{{ $card->series->url }}">{{ $card->series->name }}</a></li>
+				<li class="active">{{ $card->unique_identifier }}</li>
+			</ol>
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-12 col-md-offset-2 col-md-8">

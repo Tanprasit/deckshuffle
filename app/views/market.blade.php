@@ -1,5 +1,10 @@
 @extends( 'master' )
 @section( 'content' )
+	<div class="col-md-12">
+		<div class="page-header">
+			<h1>Weiβ Schwarz <small>- Market</small></h1>
+		</div>
+	</div>
 	<div class="col-md-3">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -24,10 +29,10 @@
 				  {{ $posts->links() }}
 	  				<select class="sort" onChange="sortBy(this.value)">
 						<option>Sort by Relevance</option>
-						<option value="lowest">Sort by Price - Lowest</option>
-						<option value="highest">Sort by Price - Highest</option>
-						<option value="newest">Sort by Condition - New First</option>
-						<option value="used">Sort by Condition - Used First</option>
+						<option id="lowest"  value="lowest">Sort by Price - Lowest</option>
+						<option id="highest" value="highest">Sort by Price - Highest</option>
+						<option id="newest" value="newest">Sort by Condition - New First</option>
+						<option id="used" value="used">Sort by Condition - Used First</option>
 					</select>
 				</nav>
 			</div>
@@ -40,7 +45,7 @@
 							</a>
 						</div>
 						<div class="col-xs-8 col-sm-8 col-md-8 col-lg-10">	
-							<h5><a href="{{asset('market/' . $post->id .'')}}">{{$post->card->name . ' - '}} {{$post->card->unique_identifier}}</a></h5>
+							<h5><a href="{{asset('market/' . $post->id .'')}}">{{ $post->card->name . ' - ' }} {{ $post->card->unique_identifier }}</a></h5>
 							<div class="row">
 								<div class="col-sm-6">
 									<ul class="post-list">
@@ -82,10 +87,24 @@
 @section('scripts')
 <script type="text/javascript" src="{{ URL::asset('js/sort.js') }}"></script>
 <script type="text/javascript">
-	$(function() {
-		$('.checkBox').children().attr(){
-
-		}
+	$(function(){
+		var type = '{{ $sortType }}';
+	   if (type) {
+	   		switch(type) {
+	   			case 'highest':
+	   				$('#highest').prop('selected', true);
+	   				break;
+	   			case 'lowest':
+	   				$('#lowest').prop('selected', true);
+	   				break;
+	   			case 'newest':
+	   				$('#newest').prop('selected', true);
+	   				break;
+   				case 'used':
+	   				$('#used').prop('selected', true);
+	   				break;
+	   		}
+	   }
 	});
 </script>
 @stop

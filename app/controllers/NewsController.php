@@ -10,7 +10,9 @@ class NewsController extends \BaseController {
 	public function index()
 	{
 		//
-		return View::make('news');
+		$news = News::paginate(10);
+		return View::make('news')
+			->with('news', $news);
 	}
 
 
