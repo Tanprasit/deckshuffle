@@ -126,7 +126,7 @@
 							</div>
 						</li>
 					@else 
-						<li>
+						<li class="list-group-item col-xs-12" >
 							<button class="btn btn-primary success center-block button-comment-padding " onClick="location.href='{{URL::route('login.index')}}'">Please sign-in to comment</button>
 						</li>
 					@endif
