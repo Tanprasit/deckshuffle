@@ -6352,9 +6352,7 @@ img.card-single-image.image-responsive.center-block {
 }
 
 .result-row-border {
-  border-bottom-style: solid;
-  border-width: 1px;
-  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
   padding-top: 10px;
 }
 
@@ -6466,4 +6464,8 @@ img.card-single-image.image-responsive.center-block {
 
 .profile-card-img {
   width: 80px;
+}
+
+.button-comment-padding {
+  margin-top: 5px;
 }

@@ -2,7 +2,7 @@
 @section('content')
 	<div class="row">
 		<div class="page-header">
-			<h1>Weiβ Schwarz <small>- Search Results for {{$query}} {{$count}}</small></h1>
+			<h1>Weiβ Schwarz <small>- Search Results for {{$query}}</small></h1>
 		</div>
 	</div>
 	@foreach($cards as $card)

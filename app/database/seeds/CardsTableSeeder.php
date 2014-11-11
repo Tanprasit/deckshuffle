@@ -3,9 +3,12 @@
 class CardsTableSeeder extends Seeder {
 	public function run() {
 		if (($handle = fopen("./public/ws.csv", "r")) !== FALSE) {
+			// Select csv file to pull data
 			if (($handle = fopen("./public/ws.csv", "r")) !== FALSE) {
 				$counter = 0;
+				// While there are chacracters on the next line, grab 1500 characters and separate by ","
 			    while (($data = fgetcsv($handle, 1500, ",")) !== FALSE) {
+			    	// ignore first line as I used the first line as column headers
 			    	if ($counter > 0) {
 						DB::table('cards')->insert(
 							array(

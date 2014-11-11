@@ -7,7 +7,8 @@ $(function() {
 		};
 		var str = $(e.target);
 		var searchValue = $('form').serialize();
-		var $this = $(this);	// thing that emmited the event
+		// thing that emmited the event
+		var $this = $(this);
 		var newSearch = $this.val();
 		if (newSearch != oldSearch) {
 			$('.search-dropdown-menu').empty();
@@ -17,7 +18,8 @@ $(function() {
 				if (req != null) {
 					req.abort()
 				};
-				req = $.get('quicksearch/cards/', searchValue).done(function( data ) {
+				// ajax for sending form inputs to the quicksearch route
+				req = $.get('/quicksearch/cards/', searchValue).done(function( data ) {
 					for (var i = 0; i < data.length; i++) {
 						if (i == 0) {
 							$('.search-dropdown-menu').append('<li role="presentation" class="dropdown-header">Card suggestions for ' + newSearch + '</li>');

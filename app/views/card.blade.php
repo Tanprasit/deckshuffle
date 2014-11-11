@@ -127,11 +127,11 @@
 						</li>
 					@else 
 						<li>
-							<button class="btn btn-primary success center-block" onClick="location.href='{{URL::route('login.index')}}'">Please sign-in to comment</button>
+							<button class="btn btn-primary success center-block button-comment-padding " onClick="location.href='{{URL::route('login.index')}}'">Please sign-in to comment</button>
 						</li>
 					@endif
 					</ul>
-					@if( $comments )
+					@if ( $comments )
 					<ul class="list-group" id="comment-list">
 					@endif
 						@foreach( $comments as $post )
@@ -145,7 +145,8 @@
 										<img src="http://placehold.it/80" class="img-circle img-responsive center-block" alt="">
 									</div>
 									<div class="col-xs-10">
-										<h5>{{ $post->user->username }}</h5>
+										<h5>{{{ $post->user->username }}}</h5>
+										<p>{{ $post->comment }}</p>
 										@if( $post->rating == 1 )
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
@@ -183,7 +184,6 @@
 											<span class="glyphicon glyphicon-star-empty"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
 										@endif
-										<p>{{ $post->comment }}</p>
 										<p>{{ $post->created_at->diffForHumans() }}</p>
 									</div>
 								</div>

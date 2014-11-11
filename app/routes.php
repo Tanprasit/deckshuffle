@@ -35,17 +35,13 @@ Route::resource('user', 'UserController');
 
 Route::resource('comment', 'CommentsController');
 
-Route::get('logout', function() {
-	Auth::logout();
-	return Redirect::to('news')
-		->with('message', 'You have logged out');
-});
-
-Route::group(['before' => 'auth'], function() {
-	Route::get('user/{id}/profile', function($id) {
-		$user = User::find($id);
-		return View::make('profile')
-			->with('user', $user);
+// Routes that requires authentication before becoming viewable
+Route::group(['before' => 'auth'], function(){
+	// Has Auth Filter 
+	Route::get('logout', function() {
+		Auth::logout();
+		return Redirect::to('news')
+			->with('message', 'You have logged out');
 	});
 });
 
@@ -54,11 +50,10 @@ Route::get('search/cards/', function() {
 	$cards = Card::where('cards.name', 'LIKE', '%'.$query.'%')->paginate(10);
 	return View::make('results')
 		->with('cards', $cards)
-		->with('query', $query)
-		->with('count', $cards->count);
+		->with('query', $query);
 });
 
-Route::get('quicksearch/cards/', function() {
+Route::get('/quicksearch/cards/', function() {
 	$query = Input::get('query');
 	$cards = DB::table('cards')->join('series', 'cards.series_id','=','series.id')->select('cards.id','cards.name','cards.unique_identifier', 'series.name as series_name', 'cards.type', 'level', 'power')->where('cards.name', 'LIKE', '%'.$query.'%')->take(4)->get();
 	return Response::json($cards);

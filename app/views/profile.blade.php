@@ -4,11 +4,13 @@
 <ul class="nav nav-tabs col-md-8 col-md-offset-2" role="tablist">
 	<li role="presentation" class="active"><a href="#profile" role="tab" data-toggle="tab">Profile</a></li>
 	<li role="presentation"><a href="#myMarket" role="tab" data-toggle="tab">Market</a></li>
-	@if( Auth::user()->id == $user->id )
-		<li role="presentation"><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
-	@endif
-	@if( Auth::user()->id == $user->id )
-		<li role="presentation"><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
+	@if( Auth::check() )
+		@if( Auth::user()->id == $user->id )
+			<li role="presentation"><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
+		@endif
+		@if( Auth::user()->id == $user->id )
+			<li role="presentation"><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
+		@endif
 	@endif
 </ul>
 
@@ -26,10 +28,12 @@
 				<table class="table">
 					<tr>
 						<td>Last Online</td>
-						@if (Auth::user()->id == $user->id)
-							<td>Now</td>
-						@else
-							<td>{{{ $user->updated_at->diffForHumans() }}}</td>
+						@if( Auth::check() )
+							@if (Auth::user()->id == $user->id)
+								<td>Now</td>
+							@else
+								<td>{{{ $user->updated_at->diffForHumans() }}}</td>
+							@endif
 						@endif
 					</tr>
 					<tr>
@@ -84,11 +88,13 @@
 			{{ $posts->links() }}
 		</nav>
 	</div>
-	@if( Auth::user()->id == $user->id )
-		<div role="tabpanel" class="tab-pane" id="messages">Future Updates</div>
-	@endif
-	@if( Auth::user()->id == $user->id )
-		<div role="tabpanel" class="tab-pane" id="settings">Future Updates</div>
+	@if( Auth::check() )
+		@if( Auth::user()->id == $user->id )
+			<div role="tabpanel" class="tab-pane" id="messages">Future Updates</div>
+		@endif
+		@if( Auth::user()->id == $user->id )
+			<div role="tabpanel" class="tab-pane" id="settings">Future Updates</div>
+		@endif
 	@endif
 </div>
 @stop

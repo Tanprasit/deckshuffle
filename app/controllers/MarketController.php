@@ -51,7 +51,7 @@ class MarketController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		// 
 		$post = Post::find($id);
 		return View::make('post')
 			->with('post', $post);
