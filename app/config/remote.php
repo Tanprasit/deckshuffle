@@ -30,8 +30,8 @@ return array(
 
 		'production' => array(
 			'host'      => '',
-			'username'  => '',
-			'password'  => '',
+			'username'  => 'root',
+			'password'  => 'thailand93',
 			'key'       => '',
 			'keyphrase' => '',
 			'root'      => '/var/www',
