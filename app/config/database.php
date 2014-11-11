@@ -54,7 +54,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => '54.171.156.164',
+			'host'      => 'localhost',
 			'database'  => 'deckcitadel',
 			'username'  => 'root',
 			'password'  => 'thailand93',
