@@ -27,6 +27,7 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(array(
 
 	'local' => array('Lukes-MacBook-Pro-2.local'),
+	'production' => array('54.171.156.164')
 
 ));
 
