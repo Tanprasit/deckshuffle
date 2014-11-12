@@ -35,10 +35,8 @@ class UserController extends \BaseController {
 		$username = Input::get('username');
 		$password = Hash::make((Input::get('password')));
 		$email = Input::get('email');
-		else {
-			$user = User::create(['username' => $username, 'password' => $password, 'email' => $email]);
-			return Redirect::to('login');
-		}
+		$user = User::create(['username' => $username, 'password' => $password, 'email' => $email]);
+		return Redirect::to('login');
 	}
 
 
