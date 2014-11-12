@@ -35,14 +35,6 @@ class UserController extends \BaseController {
 		$username = Input::get('username');
 		$password = Hash::make((Input::get('password')));
 		$email = Input::get('email');
-		$validator = Validator::make(
-			['username' => 'required|min:5'],
-			['password' => 'required|min:6']
-		);
-
-		if ($validator->fails()){
-
-		} 
 		else {
 			$user = User::create(['username' => $username, 'password' => $password, 'email' => $email]);
 			return Redirect::to('login');
