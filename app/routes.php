@@ -21,20 +21,6 @@ Route::get('/market/{sortBy}', [
 	'uses' => 'MarketController@sortBy'
 ])->where('sortBy','[A-Za-z]+');
 
-Route::resource('market', 'MarketController');
-
-Route::resource('series', 'SeriesController');
-
-Route::resource('login', 'LoginController');
-
-Route::resource('card', 'CardController');
-
-Route::resource('news', 'NewsController');
-
-Route::resource('user', 'UserController');
-
-Route::resource('comment', 'CommentsController');
-
 // Routes that requires authentication before becoming viewable
 Route::group(['before' => 'auth'], function(){
 	// Has Auth Filter 
@@ -58,6 +44,20 @@ Route::get('/quicksearch/cards/', function() {
 	$cards = DB::table('cards')->join('series', 'cards.series_id','=','series.id')->select('cards.id','cards.name','cards.unique_identifier', 'series.name as series_name', 'cards.type', 'level', 'power')->where('cards.name', 'LIKE', '%'.$query.'%')->take(4)->get();
 	return Response::json($cards);
 });
+
+Route::resource('market', 'MarketController');
+
+Route::resource('series', 'SeriesController');
+
+Route::resource('login', 'LoginController');
+
+Route::resource('card', 'CardController');
+
+Route::resource('news', 'NewsController');
+
+Route::resource('user', 'UserController');
+
+Route::resource('comment', 'CommentsController');
 
 // Route::get('', function ($id) {
 // 	$cart = Session::get('cart', []);
