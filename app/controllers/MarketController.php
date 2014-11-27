@@ -96,8 +96,6 @@ class MarketController extends \BaseController {
 	public function sortBy($sortBy) {
 
 		$series = Series::all();
-
-		switch ($sortBy) {
 			case 'highest':
 				$posts = Post::with('user','card')->orderBy('card_price', 'desc');
 				$sortType = 'highest';

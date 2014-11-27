@@ -1,6 +1,8 @@
 $(function() {
 	var req = null;
 	var oldSearch = '';
+	
+	
 	$('#search-bar').on("keyup", function(e) {
 		if ($(!'.search-dropdown-menu').children()) {
 			$('.search-dropdown-menu').hide()

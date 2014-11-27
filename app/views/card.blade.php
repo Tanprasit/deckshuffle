@@ -155,7 +155,7 @@
 											<span class="glyphicon glyphicon-star-empty"></span>
 										@elseif( $post->rating == 2 )
 											<span class="glyphicon glyphicon-star"></span>
-											<span class="glyphicon glyphicon-star"></span>
+											<span xclass="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
 											<span class="glyphicon glyphicon-star-empty"></span>
